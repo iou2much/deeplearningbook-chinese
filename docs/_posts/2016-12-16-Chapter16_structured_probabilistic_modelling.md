@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---ntitle: 深度学习中的结构化概率模型nlayout: postnshare: falsen---
 <!-- % 549 -->
 
@@ -1190,3 +1191,5 @@ RBM模型通过Gibbs采样产生的样本在\fig?中。
 
 
 
+=======
+>>>>>>> upstream/master
