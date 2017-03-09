@@ -3,9 +3,9 @@
 \usepackage{natbib}
 
 % CJK related
-\setCJKmainfont[AutoFakeBold=true]{Songti SC}
-\setCJKsansfont{Heiti SC}
-\setCJKmonofont{FangSong}
+\setCJKmainfont[AutoFakeBold=true]{Adobe Song Std}
+\setCJKsansfont{Adobe Heiti Std}
+\setCJKmonofont{Adobe Fangsong Std}
 \CTEXsetup[format={\raggedright}]{chapter}
 \CTEXsetup[format={\Large\bfseries}]{section}
 \CTEXsetup[format={\large\bfseries}]{subsection}
@@ -75,10 +75,10 @@ plainpages=true]{hyperref}
 \setlength\emergencystretch{1.5em}
 
 % my command
-\newcommand{\firstgls}[1]{\textbf{\gls{#1}}~(\glsdesc{#1})}
-\newcommand{\firstacr}[1]{\textbf{\gls{#1}}~(\glssymbol{#1})}
-\newcommand{\glsacr}[1]{\gls{#1}~(\glssymbol{#1})}
-\newcommand{\firstall}[1]{\textbf{\gls{#1}}~(\glsdesc{#1}, \glssymbol{#1})}
+\newcommand{\firstgls}[1]{\textbf{\,\gls{#1}}~(\glsdesc{#1})}
+\newcommand{\firstacr}[1]{\textbf{\,\gls{#1}}~(\glssymbol{#1})}
+\newcommand{\glsacr}[1]{\gls{#1}(\glssymbol{#1})}
+\newcommand{\firstall}[1]{\textbf{\,\gls{#1}}~(\glsdesc{#1}, \glssymbol{#1})}
 \newcommand{\ENNAME}[1]{\text{#1}}
 \newcommand{\NUMTEXT}[1]{\text{#1}}
 \newcommand{\figref}[1]{图\ref{#1}}

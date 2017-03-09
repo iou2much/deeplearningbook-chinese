@@ -39,10 +39,10 @@
 \fi
 \caption{\gls{DL}中难以处理的推断问题通常是由于结构化图模型中\gls{latent_variable}的相互作用。
 这些相互作用产生于一个\gls{latent_variable}与另一个\gls{latent_variable}或者当\gls{vstructure}的子节点可观察时与更长的激活路径相连。
-（左）一个\gls{hidden_unit}存在连接的\firstgls{srbm}~\citep{Osindero+Hinton-2008}。
+\emph{(左)}一个\gls{hidden_unit}存在连接的\firstgls{srbm}~\citep{Osindero+Hinton-2008}。
 由于存在大量\gls{latent_variable}的\gls{clique}，\gls{latent_variable}的直接连接使得后验分布难以处理。
-（中）一个\gls{DBM}，被分层从而使得不存在层内连接，由于层之间的连接其后验分布仍然难以处理。
-（右）当可见变量可观察时这个有向模型的\gls{latent_variable}之间存在相互作用，因为每两个\gls{latent_variable}都是\gls{coparent}。
+\emph{(中)}一个\gls{DBM}，被分层从而使得不存在层内连接，由于层之间的连接其后验分布仍然难以处理。
+\emph{(右)}当可见变量可观察时这个有向模型的\gls{latent_variable}之间存在相互作用，因为每两个\gls{latent_variable}都是\gls{coparent}。
 即使拥有上图中的某一种结构，一些概率模型依然能够获得易于处理的关于\gls{latent_variable}的后验分布。
 如果我们选择条件概率分布来引入相对于图结构描述的额外的独立性这种情况也是可能出现的。
 举个例子，\gls{PPCA}的图结构如右图所示，然而由于其条件分布的特殊性质（带有相互正交基向量的线性高斯条件分布）依然能够进行简单的推断。}
@@ -65,12 +65,12 @@
 我们希望计算观察数据的概率对数$\log p(\Vv;\Vtheta)$。
 有时候如果边缘化消去$\Vh$的操作很费时的话，我们通常很难计算$\log p(\Vv;\Vtheta)$。
 作为替代，我们可以计算一个$\log p(\Vv;\Vtheta)$的下界$\CalL(\Vv,{\Vtheta},q)$。
-这个下界叫做\firstall{ELBO}。
+这个下界称为\firstall{ELBO}。
 这个下界的另一个常用名字是负\firstgls{variational_free_energy}。
 具体地，这个\gls{ELBO}是这样定义的：
 % 625 head 
 \begin{align}
-\CalL(\Vv,{\Vtheta},q) = \log p(\Vv;{\Vtheta}) - D_{\text{KL}}(q(\Vh\mid\Vv) \Vert p(\Vh\mid\Vv;{\Vtheta})).
+\CalL(\Vv,{\Vtheta},q) = \log p(\Vv;{\Vtheta}) - D_{\text{KL}}(q(\Vh\mid\Vv) \Vert p(\Vh\mid\Vv;{\Vtheta})),
 \end{align}
 在这里 $q$是关于$\Vh$的一个任意概率分布。
 % 625
@@ -93,8 +93,6 @@
 = & - \SetE_{\RVh\sim q}[\log q(\Vh\mid\Vv) - \log {p(\Vh,\Vv;{\Vtheta})}].
 \end{align}
 % 625
-
-
 这也给出了\gls{ELBO}的标准定义：
 \begin{align}
 \CalL(\Vv,{\Vtheta},q) = \SetE_{\RVh\sim q}[\log p(\Vh , \Vv)] + H(q).
@@ -214,7 +212,7 @@ q(\Vh\mid\Vv) = \delta(\Vh - {\Vmu}).
 这也意味着现在我们可以通过$\Vmu$来完全控制$q$。
 通过将$\CalL$中不随$\Vmu$变化的项丢弃，剩下的我们需要解决的是一个优化问题：
 \begin{align}
-\Vmu^*  =  \underset{\Vmu}{\arg\max}\ \log p(\Vh = \Vmu,\Vv).
+\Vmu^*  =  \underset{\Vmu}{\arg\max}\ \log p(\Vh = \Vmu,\Vv),
 \end{align}
 这等价于\glssymbol{MAP}推断问题
 \begin{align}
@@ -244,7 +242,7 @@ q(\Vh\mid\Vv) = \delta(\Vh - {\Vmu}).
 \begin{align}
 	p(h_i) = \frac{\lambda}{2}  \exp(-\lambda \vert h_i \vert).
 \end{align}
-可见的节点是由一个线性变化加上噪音生成的\footnote{此处似乎有笔误，$\Vx$应为$\Vv$}:
+可见的节点是由一个线性变化加上噪声生成的\footnote{此处似乎有笔误，$\Vx$应为$\Vv$}:
 \begin{align}
 p(\Vx\mid\Vh) = \CalN(\Vv;{\MW}\Vh + \Vb,\beta^{-1}{\MI}).
 \end{align}
@@ -273,7 +271,7 @@ $p(\Vx\mid\Vh)$的复杂性导致了似然函数的对数及其梯度也很难�
 \begin{align}
 	J(\MH,\MW) = \sum_{i,j}^{}\vert H_{i,j}\vert + \sum_{i,j}^{}\Big(\MV - \MH \MW^{\top}\Big)^2_{i,j}.
 \end{align}
-为了避免如极端小的$\MH$和极端大的$\MW$这样的病态的解，许多\gls{sparse_coding}的应用包含了权值\gls{damping}或者对$\MH$列范数的限制。
+为了避免如极端小的$\MH$和极端大的$\MW$这样的病态的解，大多数\gls{sparse_coding}的应用包含了权值\gls{damping}或者对$\MH$列范数的限制。
 % 629
 
 
@@ -309,16 +307,16 @@ $p(\Vx\mid\Vh)$的复杂性导致了似然函数的对数及其梯度也很难�
 \begin{align}
 	q(\Vh\mid\Vv) = \prod_{i}^{}q(h_i \mid \Vv).
 \end{align}
-这被叫做是\firstgls{mean_field}方法。
+这被称为是\firstgls{mean_field}方法。
 更一般地说，我们可以通过选择$q$分布的形式来选择任何\gls{graphical_models}的结构，通过选择变量之间的相互作用来灵活地决定近似程度的大小。
-这种完全通用的\gls{graphical_models}方法叫做\firstgls{structured_variational_inference} \citep{Saul96}。
+这种完全通用的\gls{graphical_models}方法称为\firstgls{structured_variational_inference} \citep{Saul96}。
 % 630 
 
 
 变分方法的优点是我们不需要为分布$q$设定一个特定的参数化形式。
 我们设定它如何分解，之后通过解决优化问题来找出在这些分解限制下最优的概率分布。
 对离散型\gls{latent_variable}来说，这意味着我们使用了传统的优化技巧来优化描述$q$分布的有限个数变量。
-对连续型\gls{latent_variable}来说，这意味着我们使用了一个叫做\gls{calculus_of_variations}的数学分支来解决对一个函数空间的优化问题。
+对连续型\gls{latent_variable}来说，这意味着我们使用了一个称为\gls{calculus_of_variations}的数学分支来解决对一个函数空间的优化问题。
 然后决定哪一个函数来表示$q$分布。
 \gls{calculus_of_variations}是``变分学习''或者``变分推断''这些名字的来历，尽管当\gls{latent_variable}是离散时\gls{calculus_of_variations}并没有用武之地。
 当遇到连续型\gls{latent_variable}时，\gls{calculus_of_variations}不需要过多地人工选择模型，是一种很有用的工具。
@@ -379,7 +377,7 @@ $p(\Vx\mid\Vh)$的复杂性导致了似然函数的对数及其梯度也很难�
 % 632  head
 
 
-在\gls{binary_sparse_coding}模型中，输入$\Vv\in\SetR^n$，是由模型通过添加高斯噪音到$m$个或有或无的成分。
+在\gls{binary_sparse_coding}模型中，输入$\Vv\in\SetR^n$，是由模型通过添加高斯噪声到$m$个或有或无的成分。
 每一个成分可以是开或者关的，对应着\gls{hidden_unit} $\Vh \in\{0,1\}^m$:
 \begin{align}
 	p(h_i = 1) = \sigma(b_i),
@@ -404,6 +402,7 @@ $p(\Vx\mid\Vh)$的复杂性导致了似然函数的对数及其梯度也很难�
 \end{align}
 % 632 end
 
+
 这需要计算$p(\Vh\mid\Vv)$下的期望。
 不幸的是，$p(\Vh\mid\Vv)$是一个很复杂的分布。
 $p(\Vh,\Vv)$和$p(\Vh\mid\Vv)$的图结构见\figref{fig:bsc}。
@@ -418,9 +417,9 @@ $p(\Vh,\Vv)$和$p(\Vh\mid\Vv)$的图结构见\figref{fig:bsc}。
 	\centerline{\includegraphics{Chapter19/figures/bsc}}
 \fi
 \caption{包含四个\gls{hidden_unit}的\gls{binary_sparse_coding}的图结构。
-（左）$p(\Vh,\Vv)$的图结构。
+\emph{(左)}$p(\Vh,\Vv)$的图结构。
 要注意边是有向的，每两个\gls{hidden_unit}都是每个可见单元的\gls{coparent}。
-（右）$p(\Vh,\Vv)$的图结构。
+\emph{(右)}$p(\Vh,\Vv)$的图结构。
 为了解释\gls{coparent}之间的活跃路径，后验分布所有\gls{hidden_unit}之间都有边。}
 	\label{fig:bsc}
 \end{figure}
@@ -469,8 +468,6 @@ $p(\Vh,\Vv)$和$p(\Vh\mid\Vv)$的图结构见\figref{fig:bsc}。
 \label{eqn:1936}
 \end{align}
 % 634 head 
-
-
 尽管这些方程从美学观点来看有些不尽如人意。
 他们展示了$\CalL$可以被表示为少量简单的代数运算。
 因此\gls{ELBO}$\CalL$是易于处理的。
@@ -547,7 +544,7 @@ $p(\Vh,\Vv)$和$p(\Vh\mid\Vv)$的图结构见\figref{fig:bsc}。
 具体地说，当$\hat{h}_i$和$\hat{h}_j$两个单元的权重向量对准时，他们会产生相互抑制。
 这也是一种形式的竞争——两个共同解释输入的\gls{hidden_unit}之间，只有一个解释得更好的才被允许继续保持活跃。
 在\gls{binary_sparse_coding}的后验分布中，\gls{mean_field}近似为了捕获到更多的\gls{explaining_away}作用，产生了这种竞争。
-事实上，\gls{explaining_away}效应会导致一个\gls{multimodal}的后验分布，以至于我们如果从后验分布中采样，一些样本只有一个结点是活跃的，其他的样本在另一个结点活跃，只有很少的样本能够两者都处于活跃状态。
+事实上，\gls{explaining_away}效应会导致一个\gls{multimodal}的后验分布，以致于我们如果从后验分布中采样，一些样本只有一个结点是活跃的，其他的样本在另一个结点活跃，只有很少的样本能够两者都处于活跃状态。
 不幸的是，\gls{explaining_away}作用无法通过\gls{mean_field}中\gls{factorial}$q$分布来建模，因此建模时\gls{mean_field}近似只能选择一个\gls{mode}。
 这个现象的一个例子可以参考\figref{fig:chap3_kl_direction_color}。
 % 636
@@ -667,6 +664,7 @@ $f$函数的函数被称为是\firstgls{functional} $J[f]$。
 \end{align}
 % p 638 end 
 
+
 我们并没有直接假设$p(x)$取这种形式，而是通过最小化这个\gls{functional}从理论上得到了这个$p(x)$的表达式。
 为了解决这个最小化问题，我们需要选择$\lambda$的值来确保所有的约束都能够满足。
 我们有很大的选择$\lambda$的自由。
@@ -772,8 +770,6 @@ $f$函数的函数被称为是\firstgls{functional} $J[f]$。
 & -2vh_1w_1 - 2vh_2w_2 + 2h_1w_1h_2w_2]\Big).
 \end{align}
 % 641 
-
-
 % 641 
 从这里，我们可以发现其中我们只需要从$q(h_2\mid \Vv)$中获得两个有效值：
 $\SetE_{\RSh_2\sim q(\RSh\mid\Vv)}[h_2]$和$\SetE_{\RSh_2\sim q(\RSh\mid\Vv)}[h_2^2]$。
@@ -815,7 +811,6 @@ $\SetE_{\RSh_2\sim q(\RSh\mid\Vv)}[h_2]$和$\SetE_{\RSh_2\sim q(\RSh\mid\Vv)}[h_
 	\SetE_{\RVh \sim q}\log p(\Vv,\Vh).
 \end{align}
 % 642 
-
 对于一个特定的$\Vv$，对于$q(\Vh \mid \Vv)$中概率很大的$\Vh$ 它增加了$p(\Vh\mid\Vv)$，对于$q(\Vh \mid \Vv) $ 中概率很小的$\Vh$它减小了$p(\Vh\mid\Vv)$。
 % 642
 
@@ -842,7 +837,7 @@ $\CalL(\Vv,\Vtheta,q)\approx \log p(\Vv;\Vtheta)$和$\log p(\Vv;\Vtheta)\ll \log
 % 642  end    19.5
 
 我们已经看到了推断可以被视作是一个增加函数$\CalL$值的优化过程。
-显式地通过迭代方法比如\gls{fixed_point_equation}或者基于梯度的优化算法来执行优化的过程通常是代价昂贵且耗时巨大的。
+显式地通过迭代方法比如\gls{fixed_point_equation}或者基于梯度的优化算法来执行优化的过程通常是代价很高且耗时巨大的。
 通过学习一个近似推断许多推断算法避免了这种代价。
 具体地说，我们可以将优化过程视作将一个输入$\Vv$投影到一个近似分布$q^* = \arg\max_q\  \CalL(\Vv,q)$的一个函数$f$。
 一旦我们将多步的迭代优化过程看作是一个函数，我们可以用一个近似函数为$\hat{f}(\Vv;{\Vtheta})$的\gls{NN}来近似它。

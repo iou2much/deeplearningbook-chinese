@@ -455,9 +455,9 @@ $L^1$惩罚使部分子集的权重为零，表明相应的特征可以被安全
 \label{sec:noise_robustness}
 
 \secref{sec:dataset_augmentation_chap7}已经启发将噪声作用于输入，作为数据集增强策略。
-对于某些模型，在模型的输入加上方差极小的噪音等价于对权重施加范数惩罚\citep{Bishop1995,bishop95training}。
+对于某些模型，在模型的输入加上方差极小的噪声等价于对权重施加范数惩罚\citep{Bishop1995,bishop95training}。
 在一般情况下，噪声注入远比简单地收缩参数强大，特别是噪声被添加到\gls{hidden_unit}时更加强大。
-向\gls{hidden_unit}添加噪音是值得单独讨论重要的话题；在\secref{sec:dropout}所述\gls{dropout}算法是这种做法的主要发展方向。
+向\gls{hidden_unit}添加噪声是值得单独讨论重要的话题；在\secref{sec:dropout}所述\gls{dropout}算法是这种做法的主要发展方向。
 
 另一种\gls{regularization}模型的噪声使用方式是将其加到的权重。
 这项技术主要用于\gls{RNN}\citep{JimGilesHorne1996,Graves-2011}。
@@ -722,10 +722,10 @@ $ \eta \SetE_{p(\Vx,y)}[\norm{\nabla_{\MW}~\hat y(\Vx)}^2]$。
 \centerline{\includegraphics[width=0.8\textwidth]{Chapter7/figures/reg_l1_vs_l2_mistake}}
 \fi
 \caption{\gls{early_stopping}效果的示意图。
-(左)实线轮廓线表示负对数似然的轮廓。
+\emph{(左)}实线轮廓线表示负对数似然的轮廓。
 虚线表示从原点开始的\glssymbol{SGD}所经过的轨迹。 % ??
 \gls{early_stopping}的轨迹在较早的点$\tilde \Vw$处停止，而不是停止在最小化代价的点$\Vw^*$处。
-(右)为了对比，使用$L^2$\gls{regularization}效果的示意图。
+\emph{(右)}为了对比，使用$L^2$\gls{regularization}效果的示意图。
 虚线圆圈表示$L^2$惩罚的轮廓，$L^2$惩罚使得总代价的最小值比非\gls{regularization}代价的最小值更靠近原点。
 }
 \label{fig:chap7_reg_l1_vs_l2_mistake}
@@ -1208,7 +1208,7 @@ P_{\text{ensemble}}(\RSy = \Sy \mid \RVv)  = \frac{\tilde{P}_{\text{ensemble}}(\
 \gls{dropout_boosting}训练整个\gls{ensemble}以最大化训练集上的似然。
 在相同意义上，传统的\gls{dropout}类似于\gls{bagging}，这种方式类似于\gls{boosting}。
 如预期一样，比较单一模型训练整个网络的情况，\gls{dropout_boosting}几乎没有\gls{regularization}效果。
-这表明，\gls{dropout} \gls{bagging}的解释超过\gls{dropout}作为稳健性噪音的解释。
+这表明，\gls{dropout} \gls{bagging}的解释超过\gls{dropout}作为稳健性噪声的解释。
 当随机抽样的\gls{ensemble}成员相互独立地训练好后，\gls{bagging}\gls{ensemble}的\gls{regularization}效果才能达到。
 
 \gls{dropout}启发其他以随机方法训练指数量级的共享权重的\gls{ensemble}。
@@ -1256,7 +1256,7 @@ P_{\text{ensemble}}(\RSy = \Sy \mid \RVv)  = \frac{\tilde{P}_{\text{ensemble}}(\
 % -- 260 --
 
 另一种\gls{DL}算法——\gls{batch_normalization}，在训练时向\gls{hidden_unit}引入加性和乘性噪声重参数化模型。
-\gls{batch_normalization}的主要目的是改善优化，但噪音具有\gls{regularization}的效果，有时使\gls{dropout}变得没有必要。
+\gls{batch_normalization}的主要目的是改善优化，但噪声具有\gls{regularization}的效果，有时使\gls{dropout}变得没有必要。
 \gls{batch_normalization}将会在\secref{sec:batch_normalization}更详细地讨论。
 
 
@@ -1387,7 +1387,7 @@ $\ +\ .007\ \times$ &%
 
 \gls{tangent_prop}也涉及到\gls{double_backprop}\citep{DruckerLeCun92}和\gls{adversarial_training}\citep{Szegedy-et-al-arxiv2014,Goodfellow-2015-adversarial}。
 \gls{double_backprop}\gls{regularization}\gls{jacobian}要小，而\gls{adversarial_training}找到原输入附近的点，训练模型以在这些点产生与原来输入相同的输出。
-\gls{tangent_prop}和手工指定转换的数据集增强都要求模型对输入变化的某些特定的方向是不变的。
+\gls{tangent_prop}和手动指定转换的数据集增强都要求模型对输入变化的某些特定的方向是不变的。
 \gls{double_backprop}和\gls{adversarial_training}都要求模型对输入所有方向中的变化（只要该变化较小）都应当是不变的。
 正如数据集增强是\gls{tangent_prop}非无限小的版本，\gls{adversarial_training}是\gls{double_backprop}非无限小的版本。
 
